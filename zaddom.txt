@@ -1,0 +1,2 @@
+Przypomnij funkcje 
+wypisz, unikalność,czestosc,czynalezy,czyzawiera,minimum,maximum,podzielnosc,palindrom,generuj
