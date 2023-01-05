@@ -61,3 +61,76 @@ class Vechile:
     def __ne__(self, other):
         return self.__model != other.__model
 
+from autko import Vechile
+
+
+class Car(Vechile):
+
+    __price: int
+    __colour: str
+    __extra_seats: int
+
+    def __init__(self, reg: str = None, model: int = 0, prod_year: int = 2022, price=0, colour=None, extra_seats=0):
+        if price < 0:
+            self.__price = 0
+        self.__price = price
+        if extra_seats < 0:
+            self.__extra_seats = 0
+        self.__extra_seats = extra_seats
+        self.__colour = colour
+        super().__init__(reg, model, prod_year)
+
+
+    @property
+    def price(self):
+        return self.__price
+
+    @property
+    def colour(self):
+        return self.__colour
+
+    @property
+    def extra_seats(self):
+        return self.__extra_seats
+
+    @price.setter
+    def price(self, value: int):
+        if value < 0:
+            self.__price = 0
+        self.__price = value
+
+    @colour.setter
+    def colour(self, value: str):
+        self.__colour = value
+
+    @extra_seats.setter
+    def extra_seats(self, value: int):
+        if value < 0:
+            self.__extra_seats = 0
+        self.__extra_seats = value
+
+    def drive(self) -> str:
+        return f'Jadę świetnym pojazdem z roku {self.__prod_year}!, ma kolor {self.__colour}'
+
+    def __eq__(self, other):
+        return self.model == other.model and self.price == other.price
+
+    def __ne__(self, other):
+        return self.model != other.model and self.price != other.price
+
+    def __repr__(self) -> str:
+
+        if self.reg  and self.colour:
+            return f'Pojazd wyprodukowany w roku:{self.prod_year}.\nModel:{self.model}.\nRejestracja:{self.reg}.\nCena:{self.price}.\nKolor:{self.colour}.\nDodatkowe siedzenia:{self.extra_seats}.'
+
+        if self.reg:
+            return f'Pojazd wyprodukowany w roku:{self.prod_year}.\nModel:{self.model}.\nRejestracja:{self.reg}.\nCena:{self.price}.\nDodatkowe siedzenia:{self.extra_seats}.'
+
+        if self.colour:
+            return f'Pojazd wyprodukowany w roku:{self.prod_year}.\nModel:{self.model}.\nCena:{self.price}.\nKolor:{self.colour}.\nDodatkowe siedzenia:{self.extra_seats}.'
+        else:
+            return f'Pojazd wyprodukowany w roku:{self.prod_year}.\nModel:{self.model}.\nCena:{self.price}.\nDodatkowe siedzenia:{self.extra_seats}.'
+
+v1 = Car(None,12, 1123,12345,"czerwo",5)
+
+print(v1)
